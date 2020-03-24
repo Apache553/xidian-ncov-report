@@ -61,7 +61,7 @@ else:
 # 当前地点与上次不在同一城市
 data.update({"ismoved":AskBoolean("当前地点与上次是否不在同一城市: "),"bztcyy":""})
 if data["ismoved"] == 1:
-    data.update({"bztcyy":AskInteractive("当前地点与上次不在同一城市,原因如下",["其他","探亲","旅游","回家"])})
+    data.update({"bztcyy":AskInteractive("当前地点与上次不在同一城市,原因如下: ",["其他","探亲","旅游","回家"])})
 
 # 体温范围
 data.update({"tw":AskInteractive("今日体温范围(℃): ",["(-inf, 36]","(36, 36.5]","(36.5, 36.9]","(36.9, 37.3]","(37.3, 38]","(38, 38.5]","(38.5, 39]","(39, 40]","(40, +inf)"],1)})
@@ -91,20 +91,20 @@ if data["jcjgqr"] in [1, 2, 3]:
 data.update({"sfjcwhry":AskBoolean("今日是否与武汉市或武汉周边的人员有过较为密集的接触: ")})
 
 # 今日是否与湖北其他地区(除武汉外)的人员有过较为密集的接触
-data.update({"sfjchbry":AskBoolean("今日是否与湖北其他地区(除武汉外)的人员有过较为密集的接触")})
+data.update({"sfjchbry":AskBoolean("今日是否与湖北其他地区(除武汉外)的人员有过较为密集的接触: ")})
 
 # 今日是否接触疑似/确诊人群
-data.update({"sfjcbh":AskBoolean("今日是否接触疑似/确诊人群"),"jcbhlx":"","jcbhrq":""})
-
-# 今日是否接触境外人员
-data.update({"sfjcjwry":AskBoolean("今日是否接触境外人员: ")})
+data.update({"sfjcbh":AskBoolean("今日是否接触疑似/确诊人群: "),"jcbhlx":"","jcbhrq":""})
 
 if data["sfjcbh"] == 1:
     # 接触人群类型
     touch_list=["疑似","确诊"]
-    date.update({"jcbhlx":touch_list[AskInteractive("接触人群类型",touch_list)]})
+    date.update({"jcbhlx":touch_list[AskInteractive("接触人群类型: ",touch_list)]})
     # 接触日期
     date.update({"jcbhrq":AskText("接触日期(YYYY-MM-DD): ")})
+
+# 今日是否接触境外人员
+data.update({"sfjcjwry":AskBoolean("今日是否接触境外人员: ")})
 
 # 是否处于隔离期
 data.update({"sfcyglq":AskBoolean("是否处于隔离期: "),"gllx":"","glksrq":""})
