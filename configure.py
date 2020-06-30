@@ -40,7 +40,7 @@ data.update({"_u":AskText("统一认证账号: ")})
 data.update({"_p":AskText("统一认证密码: ")})
 
 # 今日是否在校
-data.update({"sfzx":AskBoolean("是否到过武汉: "),"fxyy":""})
+data.update({"sfzx":AskBoolean("今日是否在校: "),"fxyy":""})
 
 # 返校原因
 if data["sfzx"] == 1:
@@ -63,14 +63,17 @@ data.update({"ismoved":AskBoolean("当前地点与上次是否不在同一城市
 if data["ismoved"] == 1:
     data.update({"bztcyy":AskInteractive("当前地点与上次不在同一城市,原因如下: ",["其他","探亲","旅游","回家"])})
 
+# 今日是否在中高风险地区
+data.update({"zgfxdq":AskBoolean("今日是否在中高风险地区：")})
+
 # 体温范围
 data.update({"tw":AskInteractive("今日体温范围(℃): ",["(-inf, 36]","(36, 36.5]","(36.5, 36.9]","(36.9, 37.3]","(37.3, 38]","(38, 38.5]","(38.5, 39]","(39, 40]","(40, +inf)"],1)})
 
 # 今日是否到过或者经停武汉
-data.update({"sftjwh":AskBoolean("今日是否到过或者经停武汉: ")})
+#data.update({"sftjwh":AskBoolean("今日是否到过或者经停武汉: ")})
 
 # 今日是否到过或者经停湖北其他地区(除武汉)
-data.update({"sftjhb":AskBoolean("今日是否到过或者经停湖北其他地区(除武汉): ")})
+#data.update({"sftjhb":AskBoolean("今日是否到过或者经停湖北其他地区(除武汉): ")})
 
 # 今日是否出现发热、乏力、干咳、呼吸困难等症状
 data.update({"sfcxtz":AskBoolean("今日是否出现发热、乏力、干咳、呼吸困难等症状: "),"sfyyjc":0,"jcjgqr":0,"jcjg":""})
@@ -88,13 +91,13 @@ if data["jcjgqr"] in [1, 2, 3]:
     data.update({"jcjg":AskText("诊疗情况: ")})
     
 # 今日是否与武汉市或武汉周边的人员有过较为密集的接触
-data.update({"sfjcwhry":AskBoolean("今日是否与武汉市或武汉周边的人员有过较为密集的接触: ")})
+#data.update({"sfjcwhry":AskBoolean("今日是否与武汉市或武汉周边的人员有过较为密集的接触: ")})
 
 # 今日是否与湖北其他地区(除武汉外)的人员有过较为密集的接触
-data.update({"sfjchbry":AskBoolean("今日是否与湖北其他地区(除武汉外)的人员有过较为密集的接触: ")})
+#data.update({"sfjchbry":AskBoolean("今日是否与湖北其他地区(除武汉外)的人员有过较为密集的接触: ")})
 
-# 今日是否接触疑似/确诊人群
-data.update({"sfjcbh":AskBoolean("今日是否接触疑似/确诊人群: "),"jcbhlx":"","jcbhrq":""})
+# 今日是否接触无症状感染/疑似/确诊人群
+data.update({"sfjcbh":AskBoolean("今日是否接触无症状感染/疑似/确诊人群: "),"jcbhlx":"","jcbhrq":""})
 
 if data["sfjcbh"] == 1:
     # 接触人群类型
@@ -102,6 +105,12 @@ if data["sfjcbh"] == 1:
     date.update({"jcbhlx":touch_list[AskInteractive("接触人群类型: ",touch_list)]})
     # 接触日期
     date.update({"jcbhrq":AskText("接触日期(YYYY-MM-DD): ")})
+
+# 今日是否接触密接人员
+data.update({"mjry":AskBoolean("今日是否接触密切接触人员: ")})
+
+# 近14日内本人/共同居住者是否去过疫情发生场所（市场、单位、小区等）或与场所人员有过密切接触
+data.update({"csmjry":AskBoolean("近14日内本人/共同居住者是否去过疫情发生场所（市场、单位、小区等）或与场所人员有过密切接触: ")})
 
 # 今日是否接触境外人员
 data.update({"sfjcjwry":AskBoolean("今日是否接触境外人员: ")})
