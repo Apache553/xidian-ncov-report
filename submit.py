@@ -12,7 +12,7 @@ if os.path.exists("NOSUBMIT"):
 
 data = {}
 
-with open("/home/pi/xidian-ncov-report/data.json","r") as fd:
+with open("./data.json","r") as fd:
     data=json.load(fd)
     
 conn = requests.Session()
